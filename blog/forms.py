@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Contact, News, Denuncia
+from .models import Contact, News
 
 class NewsForm(ModelForm):
     class Meta:
@@ -12,8 +12,3 @@ class ContactForm(ModelForm):
         model = Contact
         exclude = ('date',)      
 
-
-class DenunciaForm(ModelForm):
-    class Meta:
-        model = Denuncia
-        #exclude = ('date',)

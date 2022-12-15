@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Editar Evento | {{ events.title }} {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<span><a href="{% url 'event' %}">Volver atrás</a></span>
+
+<form action="{% url 'event_edit' id=id %}" method="POST">
+    {% csrf_token %}
+    
+    <table>
+        {{ form.as_table }}
+    </table>
+    
+    <input type="submit" value="Editar">
+</form>
+
+{% endblock %}

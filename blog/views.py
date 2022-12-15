@@ -75,6 +75,3 @@ def delete(request, id):
         if form.is_valid():
             news.delete()
         return redirect(to='blog')
-
-def denuncia(request):
-    pass

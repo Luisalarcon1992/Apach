@@ -1,12 +1,14 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %}Crear Noticia{% endblock %}
+
+{% block title %}Crear Evento {% endblock %}
 
 {% block content %}
 
-<span><a href="{% url 'blog' %}">Volver atrás</a></span>
 
-<form action="{% url 'blog_create' %}" method="POST">
+<span><a href="{% url 'event' %}">Volver atrás</a></span>
+
+<form action="{% url 'event_create' %}" method="POST">
     {% csrf_token %}
     
     <table>
