@@ -1,0 +1,28 @@
+:root{
+    --color-primary: #f4dbce;
+    --color-secondary: #eaa250;
+    --color-title: ;
+    --color-text: #3a3a3a;
+    --color-bg: #707789;
+    --font-tittle: first_coffee;
+    --font-text: party_confetti;
+}
+
+
+footer {
+    min-height: 335px;
+    background: var(--color-secondary);
+}
+
+.footer-logo {
+    height: 80px;
+    width: 80px;
+    margin: 10px;
+}
+
+.footer-texto {
+    font-size: 1.5rem;
+    padding: 20px;
+    margin-bottom: 30px;
+    font-family: 'Quicksand', sans-serif;
+}

@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}{{ event.title }} {% endblock %}
+
+{% block content %}
+
+<span><a href="{% url 'event' id=event.id %}">Volver atrás</a></span>
+<ul>
+    <li><b>Título</b>{{ events.title }}</li>
+    <li><b>Descripción</b>{{ events.description }}</li>
+    <li><b>Fecha de creación</b>{{ events.date }}</li>
+    <li><b>Categoría</b>{{ events.category }}</li>
+</ul>
+
+
+{% endblock %}

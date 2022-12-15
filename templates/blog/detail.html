@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}{{ blog.title }} {% endblock %}
+
+{% block content %}
+
+<span><a href="{% url 'blog' %}">Volver atrás</a></span>
+<ul>
+    <li><b>Título</b>{{ blog.title }}</li>
+    <li><b>Descipción</b>{{ blog.description }}</li>
+    <li><b>Imágen</b>{{ blog.image }}</li>
+    <li><b>Categoría</b>{{ blog.category }}</li>
+</ul>
+
+
+{% endblock %}

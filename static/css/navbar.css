@@ -1,0 +1,39 @@
+:root{
+    --color-primary: #f4dbce;
+    --color-secondary: #eaa250;
+    --color-title: ;
+    --color-text: #3a3a3a;
+    --color-bg: #707789;
+    --font-tittle: first_coffee;
+    --font-text: party_confetti;
+}
+
+
+/* Nav Bar */
+
+.navbar {
+    padding: 2rem;
+    background: var(--color-secondary);
+    font-family: 'Chewy', cursive;
+    font-size: 45px;
+}
+
+.navbar-collapse {
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+li a:hover{
+    color: #ffff;
+    zoom: 1.3;
+}
+
+
+/* Adaptable */
+
+@media screen and (max-width: 767px) {
+    .navbar-brand {
+        display: none;
+    }
+}

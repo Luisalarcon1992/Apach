@@ -1,0 +1,19 @@
+{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
+{% endblock %}
+
+<footer class="d-flex flex-column align-items-center justify-content-center">
+    <a href="{% url 'index' %}"><img class="footer-logo" src="{% static 'img/logo.png' %}" width="64"></a> 
+    <p class="footer-texto">APACH DELEGACION CHARATA ES UNA AGRUPACION SIN FINES DE LUCRO &#169</p>
+    <div class="iconos-rrss d-flex flex-wrap align-items justify-content-center">        
+        <a href=https://es-la.facebook.com/apachprotanimales.charata target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
+        <a href=https://www.instagram.com/apacharata/?hl=es target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i></a>
+        <a href="mailto:apacharata@hotmail.com" target="_blank" rel="noopener noreferrer"><i class="bi bi-envelope-check-fill"></i></a>
+    </div>
+    
+
+</footer>

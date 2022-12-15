@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Blog {% endblock %}
+
+{% block content %}
+
+<h1>Blog Index</h1>
+
+<form action="{% url 'blog' %}" method="GET">
+    <input type="text" name="search" placeholder="Buscar noticia...">
+    <input type="submit" value="Buscar">
+</form>
+<span><a href="{% url 'blog' %}">Ver todos</a> <a href="{% url 'blog_create' %}">Añadir</a></span>
+<ul>
+    {% for new in news %}
+    <li>{{ new }}
+        <span>
+            <a href="{% url 'blog_view' id=new.id %}">Ver</a>
+            <a href="{% url 'blog_edit' id=new.id %}">Editar</a>
+            <a href="{% url 'blog_delete' id=new.id %}">Eliminar</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}

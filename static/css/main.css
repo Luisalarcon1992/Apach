@@ -1,0 +1,28 @@
+:root{
+    --color-primary: #f4dbce;
+    --color-secondary: #eaa250;
+    --color-title: ;
+    --color-text: #3a3a3a;
+    --color-bg: #707789;
+    --font-tittle: first_coffee;
+    --font-text: party_confetti;
+}
+
+main{
+    min-height: 300px;
+    display: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+section{
+    background: var(--color-primary);
+    min-height: 450px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
