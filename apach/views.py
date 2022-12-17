@@ -25,7 +25,3 @@ def create_users(request):
             return redirect(to='index')   
 
     return render(request, 'registration/create_users.html', context)  
-
-
-def denuncias(request):
-    pass

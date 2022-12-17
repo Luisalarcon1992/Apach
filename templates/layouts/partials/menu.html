@@ -18,8 +18,12 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'event'%}">Eventos</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contacto</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-        </ul>
+          {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="#">Usuario: {{ user.username }}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a></li>
+          {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Inciar Sesión</a></li>
+          {% endif %}
       </div>
     </div>
   </nav>

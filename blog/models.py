@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone   
-
+from django.contrib import auth
 # Create your models here.
 
 class News(models.Model):
@@ -8,11 +8,17 @@ class News(models.Model):
     description = models.CharField(max_length=1000, null=False, blank=False)
     date = models.DateField(default=timezone.now)
     desactivate = models.BooleanField(default=False)
-    image = models.ImageField(default= 'static/img/adopta.jpg',upload_to='media/images_news/', null=True)
+    image = models.ImageField(upload_to='media/images_news/', blank=True, null=True)
     category = models.CharField(max_length=100, blank=False, null=False)
 
     def __str__(self):
         return self.title
+
+class CommentNews(models.Model):    
+    news = models.ForeignKey(News, on_delete=models.CASCADE, null=False, blank=False, related_name='comment')
+    comment_news = models.TextField(max_length=1000, blank=True)
+    date_created = models.DateField(default=timezone.now)
+
 
 
 class Contact(models.Model):
@@ -24,6 +30,3 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
-
-class Denuncia(models.Model):
-    pass        

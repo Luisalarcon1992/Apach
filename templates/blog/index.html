@@ -13,13 +13,20 @@
 <span><a href="{% url 'blog' %}">Ver todos</a> <a href="{% url 'blog_create' %}">Añadir</a></span>
 <ul>
     {% for new in news %}
-    <li>{{ new }}
-        <span>
-            <a href="{% url 'blog_view' id=new.id %}">Ver</a>
-            <a href="{% url 'blog_edit' id=new.id %}">Editar</a>
-            <a href="{% url 'blog_delete' id=new.id %}">Eliminar</a>
-        </span>
-    </li>
+        {% if new.image %}
+            <li>{{ new }}
+                <img src="{{ new.image.url }}" width="200">
+                <span>
+                    <a href="{% url 'blog_view' id=new.id %}">Ver</a>
+                    <a href="{% url 'blog_edit' id=new.id %}">Editar</a>
+                    <a href="{% url 'blog_delete' id=new.id %}">Eliminar</a>
+                    <a href="{% url 'blog_comment' id=new.id %}">Deja tu comentario</a>
+                </span>
+            </li>
+            {% else %}
+                {% load static %}
+                <img src="{% static 'img/adopta.jpg' %}" alt="">
+        {% endif %}
     {% endfor %}
 </ul>
 

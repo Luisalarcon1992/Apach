@@ -8,11 +8,14 @@
 
 <form action="{% url 'event' %}" method="GET">
     <input type="text" name="search" placeholder="Buscar evento...">
+    <input type="date" name="date" id="">
     <input type="submit" value="Buscar">
 </form>
 <span><a href="{% url 'event' %}">Ver todos</a> <a href="{% url 'event_create' %}">Añadir</a></span>
-<ul>
-    {% for event in events %}
+
+{% for event in events %}
+
+<table>
     <li>{{ event }}
         <span>
             <a href="{% url 'event_view' id=event.id %}">Ver</a>
@@ -20,9 +23,9 @@
             <a href="{% url 'event_delete' id=event.id %}">Eliminar</a>
         </span>
     </li>
-    {% endfor %}
-</ul>
+</table>
 
+{% endfor %}
 
 
 {% endblock %}

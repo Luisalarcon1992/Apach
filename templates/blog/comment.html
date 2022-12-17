@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Comentario | {{ new.title }} {% endblock %}
+
+
+{% block content %}
+
+<form action="{% url 'blog' %}" method="post">
+    <table>
+        {{ form.as_table }}
+    </table>
+</form>
+
+{% endblock %}

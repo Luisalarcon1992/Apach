@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import News
+from .models import News, CommentNews
 from .forms import NewsForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
 
 def index(request):
     news = News.objects.filter(title__contains=request.GET.get('search',''))
@@ -15,8 +17,10 @@ def index(request):
 
 def view(request, id):
     blog = News.objects.get(id=id)
+    comment = CommentNews.objects.get(id=id)
     context = {
-        'blog':blog
+        'blog':blog,
+        'comment':comment
     }
     return render(request, 'blog/detail.html', context)
 
@@ -31,7 +35,7 @@ def edit(request, id):
         return render(request, 'blog/edit.html', context)
     
     if request.method == 'POST':
-        form = NewsForm(request.POST, instance= news)
+        form = NewsForm(request.POST, instance= news, files=request.FILES)
         if form.is_valid():
             form.save()
         
@@ -52,7 +56,7 @@ def create(request):
         return render(request, 'blog/create.html', context)
 
     if request.method == 'POST':
-        form = NewsForm(request.POST)
+        form = NewsForm(request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Noticia creada!')
@@ -75,3 +79,13 @@ def delete(request, id):
         if form.is_valid():
             news.delete()
         return redirect(to='blog')
+
+@login_required
+def comment(request, id):
+    form = CommentNews.objects.get(id=id)
+
+    context = {
+        'form':form
+    }
+
+    return render(request, 'blog/comment.html', context)

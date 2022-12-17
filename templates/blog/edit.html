@@ -14,7 +14,7 @@
 
 <span><a href="{% url 'blog' %}">Volver atrás</a></span>
 
-<form action="{% url 'blog_edit' id=id %}" method="POST">
+<form action="{% url 'blog_edit' id=id %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     
     <table>
