@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import News, CommentNews
-from .forms import NewsForm
+from .forms import NewsForm, CommentNewsForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -17,10 +17,8 @@ def index(request):
 
 def view(request, id):
     blog = News.objects.get(id=id)
-    comment = CommentNews.objects.get(id=id)
     context = {
         'blog':blog,
-        'comment':comment
     }
     return render(request, 'blog/detail.html', context)
 
@@ -79,13 +77,21 @@ def delete(request, id):
         if form.is_valid():
             news.delete()
         return redirect(to='blog')
-
+"""
 @login_required
 def comment(request, id):
     form = CommentNews.objects.get(id=id)
 
-    context = {
+    if request.method == 'GET':
+        context = {
         'form':form
-    }
+        }
+        return render(request, 'blog/comment.html', context)
 
-    return render(request, 'blog/comment.html', context)
+    if request.method == 'POST':
+        form = CommentNewsForm(request.POST, instance=form)
+        if form.is_valid():
+            form.save()
+            
+        return redirect(to='blog')
+"""        

@@ -8,6 +8,11 @@
     --font-text: party_confetti;
 }
 
+.iconos-rrss li {
+    list-style-type: none;
+    display: inline-block;    
+    font-size: 2rem;
+}
 
 footer {
     min-height: 335px;

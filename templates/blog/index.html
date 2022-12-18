@@ -2,6 +2,13 @@
 
 {% block title %} Blog {% endblock %}
 
+{% block css %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/blog_index.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
 <h1>Blog Index</h1>
@@ -11,24 +18,35 @@
     <input type="submit" value="Buscar">
 </form>
 <span><a href="{% url 'blog' %}">Ver todos</a> <a href="{% url 'blog_create' %}">Añadir</a></span>
-<ul>
-    {% for new in news %}
-        {% if new.image %}
-            <li>{{ new }}
-                <img src="{{ new.image.url }}" width="200">
-                <span>
-                    <a href="{% url 'blog_view' id=new.id %}">Ver</a>
-                    <a href="{% url 'blog_edit' id=new.id %}">Editar</a>
-                    <a href="{% url 'blog_delete' id=new.id %}">Eliminar</a>
-                    <a href="{% url 'blog_comment' id=new.id %}">Deja tu comentario</a>
-                </span>
-            </li>
-            {% else %}
-                {% load static %}
-                <img src="{% static 'img/adopta.jpg' %}" alt="">
-        {% endif %}
-    {% endfor %}
-</ul>
+<h2>Noticias</h2>
+
+<div class="noticias-recientes d-flex flex-column">
+    <div class="container text-center noticias-contenedor">
+        <div class="row">
+            {% for new in news %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="noticias">  
+                        {% if new.image %}
+                        {% load static %}
+                        <h3>{{ new.title }}</h3>
+                        <a href="{% url 'blog_view' id=new.id %}"><img class="overlay" src="{{ new.image.url }}" alt="{{ new.title }}"></a>    
+                        <a class="btn_news" href="{% url 'blog_view' id=new.id %}">Ver</a>
+                        <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>               
+                        <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
+                        {% else %}
+                        {% load static %}
+                        <h3>{{ new.title }}</h3>
+                        <a href="{% url 'blog_view' id=new.id %}"><img class="overlay" src="{% static 'img/adopta.jpg' %}" alt="{{ new.title }}"></a>
+                        <a class="btn_news" href="{% url 'blog_view' id=new.id %}">Ver</a>
+                        <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>            
+                        <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
+                        {% endif %}  
+                    </div>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
+</div>
 
 
 

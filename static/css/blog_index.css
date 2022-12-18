@@ -1,0 +1,43 @@
+:root{
+    --color-primary: #f4dbce;
+    --color-secondary: #eaa250;
+    --color-title: ;
+    --color-text: #3a3a3a;
+    --color-bg: #707789;
+    --font-tittle: first_coffee;
+    --font-text: party_confetti;
+}
+
+.noticias-recientes img {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    display: block;
+    transition: all 0.2s ease;
+}
+
+.noticias-recientes img:hover {
+    opacity: 0.5;
+    
+
+}
+
+.noticias-contendor {
+    padding-top: 60px;
+    margin-bottom: 40px;
+}
+
+.btn_news {
+    font-size: 1.5rem;
+    color: black;
+    list-style: none;
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+}
+
+.lista li {
+    list-style-type: none;
+    display: inline;
+}
