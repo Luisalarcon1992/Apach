@@ -5,10 +5,15 @@
 
 {% block content %}
 
-<form action="{% url 'blog' %}" method="post">
-    <table>
-        {{ form.as_table }}
-    </table>
-</form>
+<div class="justify-content-center d-flex">
+    <form action="{% url 'blog' %}" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Enviar comentario">
+    
+    </form>
+</div>
 
 {% endblock %}

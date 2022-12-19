@@ -18,6 +18,7 @@ def index(request):
 def view(request, id):
     blog = News.objects.get(id=id)
     comments = blog.comment.all()
+    print(comments)
     context = {
         'blog':blog,
         'comments':comments
@@ -82,10 +83,9 @@ def delete(request, id):
 
 @login_required
 def comment(request):
-    form = CommentNews.objects.all()
-    print(form)
 
     if request.method == 'GET':
+        form = CommentNewsForm()
         context = {
         'form':form
         }
