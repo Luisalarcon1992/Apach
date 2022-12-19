@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Crear Usuario {% endblock %}
+
+{% block css %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/create_and_login.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<h2>Registro de usuarios</h2>
+
+
+<div class="justify-content-center d-flex">
+    <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        <table class="table-striped">
+        
+            {{ form.as_table }}
+        
+        </table>
+        <input type="reset" class="btn btn-outline-secondary" value="Borrar Datos">
+        <input type="submit" class="btn btn-outline-secondary" value="Crear Usuario">
+        Ó    
+        <button type="submit" class="btn btn-outline-secondary"><a class= "login" href="{% url 'apach_login' %}">Inicia Sesión</a></button>
+    </form>
+</div>
+
+
+{% endblock %}

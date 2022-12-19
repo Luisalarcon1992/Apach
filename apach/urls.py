@@ -3,6 +3,7 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,7 +11,10 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('blog/', include('blog.urls')),
     path('event/', include('event.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('create_user/', views.register, name='apach_create'),
+    path('login/', LoginView.as_view(template_name='registration/login.html'), name='apach_login'),
+    path('logut/', LogoutView.as_view(template_name='registration/logut.html'), name='apach_logout'),
+
 ]
 
 

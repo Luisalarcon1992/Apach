@@ -17,8 +17,10 @@ def index(request):
 
 def view(request, id):
     blog = News.objects.get(id=id)
+    comments = blog.comment.all()
     context = {
         'blog':blog,
+        'comments':comments
     }
     return render(request, 'blog/detail.html', context)
 
@@ -77,10 +79,11 @@ def delete(request, id):
         if form.is_valid():
             news.delete()
         return redirect(to='blog')
-"""
+
 @login_required
-def comment(request, id):
-    form = CommentNews.objects.get(id=id)
+def comment(request):
+    form = CommentNews.objects.all()
+    print(form)
 
     if request.method == 'GET':
         context = {
@@ -89,9 +92,12 @@ def comment(request, id):
         return render(request, 'blog/comment.html', context)
 
     if request.method == 'POST':
-        form = CommentNewsForm(request.POST, instance=form)
+        form = CommentNewsForm(request.POST)
         if form.is_valid():
             form.save()
-            
-        return redirect(to='blog')
-"""        
+
+        context = {
+            'form':form
+        }    
+        return render(request, 'blog/comment.html', context)      
+

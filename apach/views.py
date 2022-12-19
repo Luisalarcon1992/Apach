@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from .forms import CustomerUserForm
-from django.contrib.auth import login, authenticate
+from .forms import UserRegisterForm
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 def index(request):
@@ -9,19 +11,22 @@ def index(request):
 def contact(request):
     return render(request, 'contact.html', {})      
 
-def create_users(request):
-    context = {
-        'form':CustomerUserForm
-    }   
-    
+def register(request):
     if request.method == 'POST':
-        form = CustomerUserForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
+            username = form.cleaned_date['username']
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
-            login(request,user)
-            return redirect(to='index')   
+            login(request, user) 
+            return redirect(to='blog')
+    else:
+        form = UserRegisterForm()
 
-    return render(request, 'registration/create_users.html', context)  
+    context = {
+        'form': form
+        }
+    return render(request, 'registration/register.html', context)
+
+
+

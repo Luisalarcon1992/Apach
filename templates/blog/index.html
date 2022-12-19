@@ -33,6 +33,7 @@
                         <a class="btn_news" href="{% url 'blog_view' id=new.id %}">Ver</a>
                         <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>               
                         <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
+                        <a class="btn_news" href="{% url 'blog_comment' %}">Comentarios</a> 
                         {% else %}
                         {% load static %}
                         <h3>{{ new.title }}</h3>
@@ -40,6 +41,7 @@
                         <a class="btn_news" href="{% url 'blog_view' id=new.id %}">Ver</a>
                         <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>            
                         <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
+                        <a class="btn_news" href="{% url 'blog_comment' %}">Comentarios</a> 
                         {% endif %}  
                     </div>
                 </div>
