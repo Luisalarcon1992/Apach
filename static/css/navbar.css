@@ -12,10 +12,10 @@
 /* Nav Bar */
 
 .navbar {
-    padding: 2rem;
+    padding: 1rem;
     background: var(--color-secondary);
     font-family: 'Chewy', cursive;
-    font-size: 45px;
+    font-size: 40px;
 }
 
 .navbar-collapse {

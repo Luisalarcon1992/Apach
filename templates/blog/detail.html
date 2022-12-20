@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<span><a href="{% url 'blog' %}">Volver atrás</a></span>
+<span><a class="btn btn-outline-secondary" href="{% url 'blog' %}">Volver atrás</a></span>
 <ul>
     <li><b>Título Noticia: </b>{{ blog.title }}</li>
     <li><b>Descipción: </b>{{ blog.description }}</li>

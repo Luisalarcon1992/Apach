@@ -11,14 +11,16 @@
 
 {% block content %}
 
-<h1>Blog Index</h1>
+<h2>Noticias</h2>
 
 <form action="{% url 'blog' %}" method="GET">
-    <input type="text" name="search" placeholder="Buscar noticia...">
+    <input type="text" name="search" placeholder="Buscar noticia..." style="margin: 20px;">
     <input type="submit" value="Buscar">
 </form>
-<span><a href="{% url 'blog' %}">Ver todos</a> <a href="{% url 'blog_create' %}">Añadir</a></span>
-<h2>Noticias</h2>
+<span><a class="btn btn-outline-secondary" href="{% url 'blog' %}">Ver todos</a>
+    {% if user.is_staff %}
+    <a class="btn btn-outline-secondary" href="{% url 'blog_create' %}">Añadir</a></span>
+    {% endif %}
 
 <div class="noticias-recientes d-flex flex-column">
     <div class="container text-center noticias-contenedor">
@@ -27,21 +29,25 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="noticias">  
                         {% if new.image %}
-                        {% load static %}
-                        <h3>{{ new.title }}</h3>
-                        <a href="{% url 'blog_view' id=new.id %}"><img class="overlay" src="{{ new.image.url }}" alt="{{ new.title }}"></a>    
-                        <a class="btn_news" href="{% url 'blog_view' id=new.id %}">Ver</a>
-                        <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>               
-                        <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
-                        <a class="btn_news" href="{% url 'blog_comment' %}">Comentarios</a> 
+                            {% load static %}
+                            <h3>{{ new.title }}</h3>
+                            <a href="{% url 'blog_view' id=new.id %}"><img class="overlay" src="{{ new.image.url }}" alt="{{ new.title }}"></a>    
+                            <a class="btn_news" href="{% url 'blog_view' id=new.id %}">Ver</a>
+                            {% if user.is_staff %}
+                                <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>               
+                                <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
+                            {% endif %}
+                            <a class="btn_news" href="{% url 'blog_comment' %}">Comentarios</a> 
                         {% else %}
-                        {% load static %}
-                        <h3>{{ new.title }}</h3>
-                        <a href="{% url 'blog_view' id=new.id %}"><img class="overlay" src="{% static 'img/adopta.jpg' %}" alt="{{ new.title }}"></a>
-                        <a class="btn_news" href="{% url 'blog_view' id=new.id %}">Ver</a>
-                        <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>            
-                        <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
-                        <a class="btn_news" href="{% url 'blog_comment' %}">Comentarios</a> 
+                            {% load static %}
+                            <h3>{{ new.title }}</h3>
+                            <a href="{% url 'blog_view' id=new.id %}"><img class="overlay" src="{% static 'img/adopta.jpg' %}" alt="{{ new.title }}"></a>                        
+                            <a class="btn_news" href="{% url 'blog_view' id=new.id %}">Ver</a>
+                            {% if user.is_staff %}
+                                <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>            
+                                <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
+                            {% endif %}
+                            <a class="btn_news" href="{% url 'blog_comment' %}">Comentarios</a> 
                         {% endif %}  
                     </div>
                 </div>

@@ -6,7 +6,7 @@
 {% block content %}
 
 
-<span><a href="{% url 'event' %}">Volver atrás</a></span>
+<span><a class="btn btn-outline-secondary" href="{% url 'event' %}">Volver atrás</a></span>
 
 <form action="{% url 'event_create' %}" method="POST">
     {% csrf_token %}
@@ -15,7 +15,7 @@
         {{ form.as_table }}
     </table>
     
-    <input type="submit" value="Crear">
+    <input class="btn btn-outline-secondary" type="submit" value="Crear">
 </form>
 
 {% endblock %}

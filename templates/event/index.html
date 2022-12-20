@@ -2,30 +2,59 @@
 
 {% block title %} Eventos {% endblock %}
 
+{% block css %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/blog_index.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
 <h1>Eventos </h1>
 
 <form action="{% url 'event' %}" method="GET">
-    <input type="text" name="search" placeholder="Buscar evento...">
-    <input type="date" name="date" id="">
-    <input type="submit" value="Buscar">
+    <input type="text" name="search" placeholder="Buscar evento..." style="margin:20px;">
+    <input class="btn btn-outline-secondary" type="submit" value="Buscar">
 </form>
-<span><a href="{% url 'event' %}">Ver todos</a> <a href="{% url 'event_create' %}">Añadir</a></span>
+<span><a class="btn btn-outline-secondary" href="{% url 'event' %}">Ver todos</a> 
+    {% if user.is_staff %}
+        <a class="btn btn-outline-secondary" href="{% url 'event_create' %}">Añadir</a></span>
+    {% endif %}        
 
-{% for event in events %}
 
-<table>
-    <li>{{ event }}
-        <span>
-            <a href="{% url 'event_view' id=event.id %}">Ver</a>
-            <a href="{% url 'event_edit' id=event.id %}">Editar</a>
-            <a href="{% url 'event_delete' id=event.id %}">Eliminar</a>
-        </span>
-    </li>
-</table>
 
-{% endfor %}
-
+<div class="noticias-recientes d-flex flex-column">
+    <div class="container text-center noticias-contenedor">
+        <div class="row">
+            {% for event in events %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="noticias">  
+                        {% if event.image %}
+                            {% load static %}
+                            <h3>{{ event.title }}</h3>
+                            <a href="{% url 'event_view' id=event.id %}"><img class="overlay" src="{{ event.image.url }}" alt="{{ event.title }}"></a>    
+                            <a class="btn_news" href="{% url 'event_view' id=event.id %}">Ver</a>
+                            {% if user.is_staff %}
+                                <a class="btn_news" href="{% url 'event_edit' id=event.id %}">Editar</a>               
+                                <a class="btn_news" href="{% url 'event_delete' id=event.id %}">Eliminar</a> 
+                            {% endif %}
+                            {% else %}
+                            {% load static %}
+                            <h3>{{ event.title }}</h3>
+                            <a href="{% url 'event_view' id=event.id %}"><img class="overlay" src="{% static 'img/adopta.jpg' %}" alt="{{ event.title }}"></a>
+                            <a class="btn_news" href="{% url 'event_view' id=event.id %}">Ver</a>
+                            {% if user.is_staff %}
+                                <a class="btn_news" href="{% url 'event_edit' id=event.id %}">Editar</a>            
+                                <a class="btn_news" href="{% url 'event_delete' id=event.id %}">Eliminar</a>
+                            {% endif %} 
+                        {% endif %}  
+                    </div>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
+</div>
 
 {% endblock %}

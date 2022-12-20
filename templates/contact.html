@@ -5,7 +5,15 @@
 
 
 {% block content %}
-
-<h1>Página de contacto </h1>
+<h2>Formulario de contacto</h2>
+<div class="justify-content-center d-flex">    
+    <form action="{% url 'contact' %}" method="POST">
+        {% csrf_token %}
+        <table class="table-striped">        
+            {{ form.as_table }}        
+        </table>
+        <input type="submit" class="btn btn-outline-secondary" value="Enviar Formulario">
+    </form>
+</div>
 
 {% endblock %}
