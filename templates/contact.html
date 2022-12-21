@@ -5,8 +5,8 @@
 
 
 {% block content %}
-<h2>Formulario de contacto</h2>
-<div class="justify-content-center d-flex">    
+<h2 style="padding:20px;">Formulario de contacto</h2>
+<div class="container justify-content-center d-flex">    
     <form action="{% url 'contact' %}" method="POST">
         {% csrf_token %}
         <table class="table-striped">        

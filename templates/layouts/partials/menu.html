@@ -12,13 +12,14 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navabar-toggler">
-        <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" width="150" alt="Logo de la página web"></a>
+        <a class="navbar-brand" href="{% url 'blog' %}"><img src="{% static 'img/logo.png' %}" width="150" alt="Logo de la página web"></a>
         <ul class="navbar-nav d-flex justify-content-center align-items-center">
           <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Noticias</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'event'%}">Eventos</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Nosotros</a></li>
           {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link" href="#">Usuario: {{ user.username }}</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">@{{ user.username }}</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'apach_logout' %}">Cerrar Sesión</a></li>
           {% else %}
           <li class="nav-item"><a class="nav-link" href="{% url 'apach_login' %}">Iniciar Sesión</a></li>

@@ -1,16 +1,34 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %}{{ event.title }} {% endblock %}
+{% block title %}{{ events.title }} {% endblock %}
+
+{% block css %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/blog_detail.css' %}">
+
+{% endblock %}
 
 {% block content %}
 
-<span><a class="btn btn-outline-secondary" href="{% url 'event' %}">Volver atrás</a></span>
-<ul>
-    <li><b>Título</b>{{ events.title }}</li>
-    <li><b>Descripción</b>{{ events.description }}</li>
-    <li><b>Fecha del evento </b>{{ events.date_event }}</li>
-    <li><b>Categoría</b>{{ events.category }}</li>
-</ul>
+<span><a class="btn btn-outline-secondary" style="margin: 1em;" href="{% url 'event' %}">Volver atrás</a></span>
 
+<h2 class="titulo">{{ events.title }}</h2>
+<div class="container informacion">
+    <ul class="list">
+        <li>Fecha publicación: <strong>{{ events.date }}</strong></li>
+        <li>Categoría: <strong>{{ events.category }}</strong></li>
+        <li>Día a realizarse el evento <strong>{{ events.date_event }}</strong></li>
+    </ul>
+</div>
+<div class="container d-flex">    
+    {% if events.image %}
+    <img class="imagen-detail" src="{{ events.image.url }}" alt="{{ event.title }}">
+    {% else %}
+    <img class="imagen-detail" src="{% static 'img/adopta.jpg' %}" alt="{{ blog.title }}">
+    {% endif %}
+    <p class="parrafo">{{ events.description }}</p>  
+</div>
 
 {% endblock %}

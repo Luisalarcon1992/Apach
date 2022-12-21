@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Nosotros{% endblock %}
+
+{% block css %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+
+<h1>Hola! Desde APACH Charata te damos la bienvenida a nuestra web...</h1>
+
+
+<div class="container">  
+    <img class="img-fluid" src="{% static 'img/adopta.jpg' %}" alt="No compres ADOPTA">  
+    <p>Nuestro grupo es una asociacion de personas que tienen un sentimiento en comun: <strong>EL AMOR INCONDICONAL POR LOS ANIMALES DOMESTICOS Y SILVESTRES.</strong> </p>
+    <p>Aclaramos que nuetra tarea es desde el corazon y solo a voluntad. Esta Agrupacion nace a fines del año 2000 como una preocupacion ciudadana por el ciudado de animales de la calle (perros y gatos) en ese entonces éramos la llamada informalmente: "SOCIEDAD PROTECTORA DE ANIMALES". En el mes de Septiembre del 2010 fuimos reconocidos por APACH RESISTENCIA, para trabajar en nombre de APACH DELEGACION CHARATA.</p>  
+    <p>En Apach tenemos OBJETIVOS PRINCIPALES:</p>
+    <ul class="lista-objetivos">
+        <li>Difundir, promover y proteger los derechos de los animales.</li>
+        <li>Fomentar la tenencia responsable.</li>
+        <li>Inculcar en el ser humano el amor por animales domesticos y salvajes.</li>
+        <li>Difundir la esterilización como único método ético de control de la reproducción de la fauna urbana.</li>
+        <li>Realizar campañas de desparasitaciones, castraciones y sanidad a grupos caninos y felinos vulnerables, a traves del asesoramiento de un profesional veterinario.</li>
+        <li>Lograr el interes de otros grupos sociales en colaborar en la ayuda de los animales.</li>
+    </ul>
+
+    <p><strong>Importante:</strong> En APACH rechazamos el hacinamiento animal ya sea en guarderias caninas y felinas; por el contrario creemos que la castracion es el metodo más efectivo y seguro para lograr el control del crecimeinto poblacional de animales no deseados.</p> 
+</div>
+
+
+{% endblock %}

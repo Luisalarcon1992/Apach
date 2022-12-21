@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from .models import Contact, News, CommentNews
+from django import forms
+from .models import Contact, News, CommentNew
 
 class NewsForm(ModelForm):
     class Meta:
@@ -7,13 +8,15 @@ class NewsForm(ModelForm):
         exclude = ('date',)        
 
 
-class ContactForm(ModelForm):
+class ContactForm(ModelForm):   
     class Meta:
         model = Contact
         exclude = ('date',)   
 
-class CommentNewsForm(ModelForm):
+class CommentNewForm(ModelForm):
+    name = forms.CharField(max_length=100, label='Nombre ')
+    comment_news = forms.CharField(label='Comentario ', widget=forms.Textarea)
     class Meta:
-        model = CommentNews
-        exclude = ('date_created',)
+        model = CommentNew
+        exclude = ('date_created','user')
 

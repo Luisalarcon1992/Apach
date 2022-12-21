@@ -21,9 +21,7 @@
 <span><a class="btn btn-outline-secondary" href="{% url 'event' %}">Ver todos</a> 
     {% if user.is_staff %}
         <a class="btn btn-outline-secondary" href="{% url 'event_create' %}">Añadir</a></span>
-    {% endif %}        
-
-
+    {% endif %}       
 
 <div class="noticias-recientes d-flex flex-column">
     <div class="container text-center noticias-contenedor">
@@ -40,7 +38,7 @@
                                 <a class="btn_news" href="{% url 'event_edit' id=event.id %}">Editar</a>               
                                 <a class="btn_news" href="{% url 'event_delete' id=event.id %}">Eliminar</a> 
                             {% endif %}
-                            {% else %}
+                        {% else %}
                             {% load static %}
                             <h3>{{ event.title }}</h3>
                             <a href="{% url 'event_view' id=event.id %}"><img class="overlay" src="{% static 'img/adopta.jpg' %}" alt="{{ event.title }}"></a>

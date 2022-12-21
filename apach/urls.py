@@ -14,6 +14,7 @@ urlpatterns = [
     path('create_user/', views.register, name='apach_create'),
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='apach_login'),
     path('logut/', LogoutView.as_view(template_name='registration/logut.html'), name='apach_logout'),
+    path('about/', views.about, name='about')
 
 ]
 

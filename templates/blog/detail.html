@@ -2,15 +2,85 @@
 
 {% block title %}{{ blog.title }} {% endblock %}
 
+{% block css %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/blog_detail.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
-<span><a class="btn btn-outline-secondary" href="{% url 'blog' %}">Volver atrás</a></span>
-<ul>
-    <li><b>Título Noticia: </b>{{ blog.title }}</li>
-    <li><b>Descipción: </b>{{ blog.description }}</li>
-    <li><b>Fecha de publicación: </b>{{ blog.date }}</li>
-    <li><b>Categoría: </b>{{ blog.category }}</li>
-</ul>
+<span><a class="btn btn-outline-secondary" style="margin: 1em;" href="{% url 'blog' %}">Volver atrás</a></span>
 
+<h1 class="titulo">{{ blog.title }}</h1>
+<div class="container informacion">
+    <ul class="list">
+        <li>Fecha publicación: <strong>{{ blog.date }}</strong></li>
+        <li>Categoría: <strong>{{ blog.category }}</strong></li>
+    </ul>
+</div>
+<div class="container" >    
+    {% if blog.image %}
+    <img class="img-fluid" src="{{ blog.image.url }}" alt="{{ blog.title }}">
+    {% else %}
+    <img class="img-fluid" src="{% static 'img/adopta.jpg' %}" alt="{{ blog.title }}">
+    {% endif %}
+    <p class="parrafo">{{ blog.description }}</p>  
+</div>
+<section>
+    <div class="container">
+        <br><br><br><br>                        
+        {% if blog.comment.all %}
+            <br><br><br>
+            <h3>Comentarios: </h3>  
+            {% for c in blog.comment.all %}
+                <ul class="info-comentarios">
+                    <li><strong>{{ c.user}} - {{ c.date_created}}</strong></li>
+                    <p> {{ c }}</p>                    
+                </ul>
+            {% endfor %}
+            {% if user.is_authenticated %}
+                <div class="justify-content-center d-flex">
+                    <form action="{% url 'blog_comment' %}" method="POST">
+                        {% csrf_token %}
+                        <table style="margin: 20px; padding: 20px;">
+                            {{ form.as_table }}
+                        </table>
+                        <br>
+                        <input class="btn btn-outline-secondary" type="submit" value="Enviar comentario">
+                        <br><br><br><br>
+                    </form>                    
+                </div>                
+            {% else %}
+                <span>Inicia sesión para dejar tu comentario  <a class="btn btn-outline-secondary" href="{% url 'apach_login' %}">Iniciar sesión</a></span>
+            {% endif %}    
+            <br><br><br><br><br><br><br><br>
+        {% else %}
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <h3>Comentarios: </h3>
+            <br><br>
+            <h3>Sin comentarios</h3>
+            <br><br>
+            {% if user.is_authenticated %}
+                <div class="justify-content-center d-flex">
+                    <form action="{% url 'blog_comment' %}" method="POST">
+                        {% csrf_token %}
+                        <table style="margin: 20px; padding: 20px;">
+                            {{ form.as_table }}
+                        </table>
+                        <br>
+                        <input class="btn btn-outline-secondary" type="submit" value="Enviar comentario">
+                        <br><br><br><br>
+                    </form>                    
+                </div>                
+            {% else %}
+                <span>Inicia sesión para dejar tu comentario  <a class="btn btn-outline-secondary" href="{% url 'apach_login' %}">Iniciar sesión</a></span>
+            {% endif %}    
+        {% endif %}
+    </div>
 
+</section>
 {% endblock %}

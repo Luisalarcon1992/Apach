@@ -3,6 +3,7 @@
 {% block title %} Blog {% endblock %}
 
 {% block css %}
+
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'css/blog_index.css' %}">
@@ -14,7 +15,7 @@
 <h2>Noticias</h2>
 
 <form action="{% url 'blog' %}" method="GET">
-    <input type="text" name="search" placeholder="Buscar noticia..." style="margin: 20px;">
+    <input type="text" name="search" placeholder="Buscar noticia..." style="margin: 20px;">    
     <input type="submit" value="Buscar">
 </form>
 <span><a class="btn btn-outline-secondary" href="{% url 'blog' %}">Ver todos</a>
@@ -37,7 +38,6 @@
                                 <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>               
                                 <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
                             {% endif %}
-                            <a class="btn_news" href="{% url 'blog_comment' %}">Comentarios</a> 
                         {% else %}
                             {% load static %}
                             <h3>{{ new.title }}</h3>
@@ -47,7 +47,6 @@
                                 <a class="btn_news" href="{% url 'blog_edit' id=new.id %}">Editar</a>            
                                 <a class="btn_news" href="{% url 'blog_delete' id=new.id %}">Eliminar</a> 
                             {% endif %}
-                            <a class="btn_news" href="{% url 'blog_comment' %}">Comentarios</a> 
                         {% endif %}  
                     </div>
                 </div>
@@ -55,6 +54,7 @@
         </div>
     </div>
 </div>
+
 
 
 

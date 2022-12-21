@@ -1,14 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import News, CommentNews
-from .forms import NewsForm, CommentNewsForm
+from .models import News, CommentNew
+from .forms import NewsForm, CommentNewForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 
 def index(request):
     news = News.objects.filter(title__contains=request.GET.get('search',''))
-    
     context = {
         'news':news
     }
@@ -16,12 +16,13 @@ def index(request):
     return render(request, 'blog/index.html', context)
 
 def view(request, id):
+    form = CommentNewForm() 
     blog = News.objects.get(id=id)
     comments = blog.comment.all()
-    print(comments)
     context = {
         'blog':blog,
-        'comments':comments
+        'comments':comments,
+        'form':form
     }
     return render(request, 'blog/detail.html', context)
 
@@ -83,21 +84,23 @@ def delete(request, id):
 
 @login_required
 def comment(request):
-
+    form = CommentNewForm()    
     if request.method == 'GET':
-        form = CommentNewsForm()
         context = {
         'form':form
         }
-        return render(request, 'blog/comment.html', context)
+        return render(request, 'blog/detail.html', context)
 
     if request.method == 'POST':
-        form = CommentNewsForm(request.POST)
+        
+        form = CommentNewForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Comentario enviado de manera correcta.')
+            print(f'Se guardo el formulario {form.__dict__}')
+            
+            return redirect(to='blog')
 
-        context = {
-            'form':form
-        }    
-        return render(request, 'blog/comment.html', context)      
+
+
 

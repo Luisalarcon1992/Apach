@@ -1,0 +1,22 @@
+.lista-objetivos {
+    list-style: inside;
+    text-align: left;    
+}
+
+h1 {
+    margin: 20px;
+    padding: 30px;
+}
+
+.img-fluid {
+    border-radius: 20px;
+    margin-right: 20px;
+    width: 40%;
+    padding: 10px;
+    float: left;   
+}
+.container {
+    font-size: 20px;
+    text-align: left;
+    padding: 20px;
+}
